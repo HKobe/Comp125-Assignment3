@@ -1,0 +1,21 @@
+/*Author: Hassan Kobeissi - 300847239;
+FileName & Description: Index.css intended for Index.html;
+WebsiteName: AssignmentTwo;
+*/
+/*Section Header - Styling*/
+.ProjectPage {
+    width: 500px; margin-left: 125px;
+}
+.AboutPage {
+    width: 500px; margin-left: 125px;
+}
+.ContactPage {
+    width: 500px; margin-left: 125px;
+
+}
+.First-Title {
+    text-align: center;    
+}
+.CSharp{
+    margin-left: 125px;    
+}
