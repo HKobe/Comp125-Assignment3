@@ -1,31 +1,15 @@
 /*Apps.Js
-Author: Hassan Kobeissi;
-Web Site Name: AssignmentTwo;
-File Description: To Display Paragraphs, and store user info and output to the console. 
-*/
-(function() {
-  "use strict"
-  //this defines an array of HTML Elements
-  
-var Pararray = [];
-/*Index.html */
- Pararray[0] = document.getElementById("bio");
- Pararray[1] = document.getElementById("project1");
- /*About.html */
- Pararray[2] = document.getElementById("about");
- Pararray[3] = document.getElementById("");
- Pararray[4] = document.getElementById("SnapChat");
- /*Contact.html */
- Pararray[5] = document.getElementById("Contact");
+ A uthor: Hassan Kobeissi;
+*
+ Web Site Name: AssignmentTwo;
+ File Description: To Display Paragraphs, and store user info and output to the console. 
+ */
+(function () {
 
-/*Projects.html*/
- Pararray[6] = document.getElementById("sub1");
- Pararray[7] = document.getElementById("project2")
- Pararray[8] = document.getElementById("sub2");
- Pararray[9] = document.getElementById("project3")
- Pararray[10] = document.getElementById("sub3"); 
- Pararray[11] = document.getElementById("proj4");
- Pararray[12] = document.getElementById("sub4");
+	var xhrParagraphContents;
+	"use strict"
+	//this defines an array of HTML Elements
+ //this defines an array of HTML Elements
  //defines your paragraph array
   var paragraphs = [];
   //The data for my pages
@@ -50,77 +34,90 @@ var Pararray = [];
   //second way to define an array
   //var paragraph = new  array();
   //checks to see if paragraph one exists
-   for (var index = 0; index < Pararray.length; index++)
-   {
-     if (Pararray[index]) {
-  Pararray[index].textContent = paragraphs[index];
-  }
-   }
+  // for (var index = 0; index < Pararray.length; index++)
+   //{
+     //if (Pararray[index]) {
+  //Pararray[index].textContent = paragraphs[index];
+  //}
+   //}
+	function readParagraphData() {
 
-  })();
-  //create reference to the send button 
-  //event listener and event handler - 
-  var sendButton = document.getElementById("sendButton");
-  
-  /*sendButton.addEventListener("click", sendButtonClick);*/
-  
-  function sendButtonClick(event) {
-    console.log("Send Button Clicked!");
-  }
-  
-  //create reference to firstname value
-  var name  = document.getElementById("name");
-  
-  //create reference to email value
-  var email  = document.getElementById("email");
-  
-  //create ref to Phone Number
-  var phone = document.getElementById("phone");
-  
-    //create ref to the message field
-  var message = document.getElementById("message");
-  
-  // create ref to the contact form 
-  var contactForm = document.getElementById("contactForm");
-  
-  contactForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    console.log("Form is now Submitted to the Console!");
-    showFormInput();
-    contactForm.reset();
-  });
-  function showFormInput() {
-    console.log("-----------------");
-    console.log("Name: " + name.value);
-    console.log("-----------------");
-    console.log("Email: " + email.value);
-    console.log("------------------");
-    console.log("Phone: " + phone.value);
-    console.log("------------------");
-    console.log("Message: " + message.value);
-    console.log("------------------");
+		// data loaded everything is ok
 
-    
-  }
-  //ASSIGNMENT 3 JSON AND AJAX//
+		if ((xhrParagraphContents.readyState === 4) && (xhrParagraphContents.status === 200)) {
 
-function fetchJSONFile(path, callback) {
-    var httpRequest = new XMLHttpRequest();
-    httpRequest.onreadystatechange = function() {
-        if (httpRequest.readyState === 4) {
-            if (httpRequest.status === 200) {
-                var data = JSON.parse(httpRequest.responseText);
-                if (callback) callback(data);
-            }
-        }
-    };
-    httpRequest.open('GET', path);
-    httpRequest.send(); 
-}
+			var paragraphContents = JSON.parse(xhrParagraphContents.responseText);
 
-// this requests the file and executes a callback with the parsed result once
-//   it is available
-fetchJSONFile('paragraphs.json', function(data){
-    // do something with your data
-    console.log(data);
-});
+			var paragraphs = paragraphs.about;
+
+
+			contents.forEach(function (about) {
+
+				var about = paragraphs[2];
+
+				
+
+				console.log(about + " -> " + about);
+				//ref to the HTML ELEMENT
+				if (documentElements[about]) {
+
+					documentElements[about].innerHTML = about;
+
+				}
+
+			}, this);
+
+
+		}
+
+	}
+
+	/* 
+	
+	* This function is to handle the windows load event on which the
+	
+	* paragraph details will be requested from json file using AJAX call and then process
+	
+	* the resoponse to use paragraph details.
+	
+	* 
+	
+	* @function init
+	
+	* @returns {void}
+	
+	*/
+
+	function
+init() {
+
+
+		xhrParagraphContents
+			=
+			new
+				XMLHttpRequest();
+		// step 1 - create xhr object
+
+		xhrParagraphContents.open("GET",
+			"Scripts/paragraphs.json",
+			true);
+		// step 2 - open request
+
+		xhrParagraphContents.send(null);
+		// step 3 - send request
+
+		xhrParagraphContents.addEventListener("readystatechange",
+			readParagraphData);
+		// step 4
+
+
+	}
+
+
+	// add windows load event handler
+
+	window.addEventListener("load",
+		init);
+
+
+})();
